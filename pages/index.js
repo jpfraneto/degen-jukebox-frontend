@@ -9,9 +9,11 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <h1>JUKEBOX</h1>
-      <Link href="/queue">queue</Link>
-      <Link href="/jukebox">library</Link>
+      <h1 className="text-yellow-600 text-7xl">DEGEN JUKEBOX</h1>
+      <div className="flex space-x-2">
+        <Link href="/queue">queue</Link>
+        <Link href="/jukebox">library</Link>
+      </div>
     </main>
   );
 }
