@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
+import Link from "next/link";
 
 const Live = () => {
   const [currentVideo, setCurrentVideo] = useState("");
@@ -48,6 +49,10 @@ const Live = () => {
   return (
     <div className="flex flex-col">
       <p>degen radio</p>
+      <div className="flex space-x-2">
+        <Link href="/">home</Link>
+        <Link href="/queue/add">add new</Link>
+      </div>
       <ReactPlayer
         ref={playerRef}
         url={currentVideo}
