@@ -10,12 +10,14 @@ const Live = () => {
 
   const fetchCurrentRecommendation = async () => {
     try {
+      console.log("fetching the curent recomendation");
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_ROUTE}/api/present-recommendation`
       );
       if (response.status !== 200) {
         throw new Error("Failed to fetch the current recommendation");
       }
+      console.log("the response is: ", response.data);
       const data = response.data;
       setCurrentVideo(`https://www.youtube.com/watch?v=${data.youtubeID}`);
       setElapsedTime(data.elapsedSeconds);

@@ -15,4 +15,9 @@ module.exports = {
     },
   },
   plugins: [],
+  extend: {
+    fontFamily: {
+      sans: ["var(--font-proto)"],
+    },
+  },
 };

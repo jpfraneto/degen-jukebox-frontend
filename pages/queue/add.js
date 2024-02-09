@@ -5,7 +5,6 @@ import { useProfile } from "@farcaster/auth-kit";
 
 export default function AddRecommendation() {
   const profile = useProfile();
-  console.log("the profile is: ", profile);
   const {
     isAuthenticated,
     profile: { fid, displayName, custody },

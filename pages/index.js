@@ -12,7 +12,6 @@ export default function Home() {
       <h1 className="text-yellow-600 text-7xl">DEGEN JUKEBOX</h1>
       <div className="flex space-x-2">
         <Link href="/queue">queue</Link>
-        <Link href="/jukebox">library</Link>
         <Link href="/queue/add">add music</Link>
       </div>
     </main>

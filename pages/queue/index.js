@@ -2,8 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useProfile } from "@farcaster/auth-kit";
 
 const QueuePage = () => {
+  const profile = useProfile();
+  const {
+    isAuthenticated,
+    profile: { fid, displayName, custody },
+  } = profile;
   const [queue, setQueue] = useState([]);
   const [loading, setLoading] = useState(true);
   async function fetchAllMusic() {
@@ -32,9 +38,13 @@ const QueuePage = () => {
       </div>
 
       <div className="w-48 bg-purple-200 text-black p-4 border-white border-2 rounded-xl hover:bg-purple-500 cursor-pointer">
-        <Link href="/queue/add" className="">
-          + add to queue
-        </Link>
+        {isAuthenticated ? (
+          <Link href="/queue/add" className="">
+            + add to queue
+          </Link>
+        ) : (
+          <p>login to add music</p>
+        )}
       </div>
 
       <Link href="/">back</Link>
