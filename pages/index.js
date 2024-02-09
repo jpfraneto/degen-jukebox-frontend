@@ -13,6 +13,7 @@ export default function Home() {
       <div className="flex space-x-2">
         <Link href="/queue">queue</Link>
         <Link href="/jukebox">library</Link>
+        <Link href="/queue/add">add music</Link>
       </div>
     </main>
   );
