@@ -115,7 +115,7 @@ export default function AddRecommendation() {
         </div>
       )}
       <div>
-        <Link href="/live">live</Link>
+        <Link href="/">live</Link>
       </div>
     </div>
   );
