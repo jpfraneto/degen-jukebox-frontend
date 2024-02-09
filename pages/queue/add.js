@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useProfile } from "@farcaster/auth-kit";
+import Link from "next/link";
 
 export default function AddRecommendation() {
   const profile = useProfile();
