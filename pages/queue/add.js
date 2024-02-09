@@ -5,6 +5,7 @@ import { useProfile } from "@farcaster/auth-kit";
 
 export default function AddRecommendation() {
   const profile = useProfile();
+  console.log("the profile is: ", profile);
   const {
     isAuthenticated,
     profile: { fid, displayName, custody },
@@ -27,14 +28,14 @@ export default function AddRecommendation() {
     setMessage("Submitting recommendation...");
     const youtubeID = youtube_parser(url);
     if (youtubeID.length != 11) return alert("invalid url!");
-
+    if (!fid) return alert("you need to login first");
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_ROUTE}/api/recommendation`,
         {
           url,
           bidAmount: bidAmount || 0,
-          authorFid: fid || 16098, // Replace with actual FID
+          authorFid: fid, // Replace with actual FID
         }
       );
 
@@ -48,7 +49,7 @@ export default function AddRecommendation() {
     }
   };
 
-  if (false && !isAuthenticated) {
+  if (!isAuthenticated) {
     return (
       <div>
         <p>you need to login with your farcaster account to add music</p>
@@ -113,6 +114,9 @@ export default function AddRecommendation() {
           </ul>
         </div>
       )}
+      <div>
+        <Link href="/live">live</Link>
+      </div>
     </div>
   );
 }
