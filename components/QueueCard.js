@@ -25,11 +25,16 @@ const QueueCard = ({ recommendation }) => {
       <div className="ml-2 h-12 w-12 bg-black rounded-full overflow-hidden relative">
         <Image src={recommendation.authorPfp} fill />
       </div>
-      {recommendation.bidAmount && (
+      {recommendation?.bidAmount && recommendation.bidAmount > 0 && (
         <div className="text-right  mx-2 flex h-full items-center">
           <p className="text-purple-200 text-3xl">
             {recommendation.bidAmount} $degen
           </p>
+        </div>
+      )}
+      {recommendation.repeated && (
+        <div className="text-right  mx-2 flex h-full items-center">
+          <p className="text-purple-200 text-3xl">repeated recommendation</p>
         </div>
       )}
     </div>
