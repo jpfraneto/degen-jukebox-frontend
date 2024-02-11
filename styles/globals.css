@@ -31,3 +31,29 @@ body {
     text-wrap: balance;
   }
 }
+
+.mainContainer {
+  position: relative; /* Ensure the pseudo-element is positioned relative to the container */
+  background-image: url('/images/bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mainContainer::before {
+  content: ""; /* Required for the pseudo-element to show */
+  position: absolute; /* Position it over the container */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Black with 60% opacity */
+  z-index: 1; /* Ensure it's above the background but below the content */
+}
+
+/* Ensure that content inside .mainContainer is positioned above the overlay */
+.mainContainer > * {
+  position: relative;
+  z-index: 2;
+}
+

@@ -1,21 +1,28 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { Comic_Neue } from "next/font/google";
 import LivePlayer from "../components/LivePlayer";
 import Link from "next/link";
+import Queue from "../components/Queue";
+import QueueCard from "../components/QueueCard";
 
-const inter = Inter({ subsets: ["latin"] });
+const comic = Comic_Neue({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex h-screen px-10 pt-8 w-full flex-col items-center ${comic.className}`}
     >
-      <h1 className="text-yellow-600 text-7xl">DEGEN JUKEBOX (beta)</h1>
-      <LivePlayer />
-      <div className="flex space-x-2">
-        <Link href="/queue">queue</Link>
-        <Link href="/queue/add">add music</Link>
+      <h1 className="text-2xl">gen radio</h1>
+      <QueueCard
+        recommendation={{
+          authorPfp:
+            "https://res.cloudinary.com/merkle-manufactory/image/fetch/c_fill,f_gif,w_144/https%3A%2F%2Fi.imgur.com%2FUxAWyZw.gif",
+        }}
+      />
+      <div className="mb-2">
+        <LivePlayer />
       </div>
+      <Queue />
     </main>
   );
 }

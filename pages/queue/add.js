@@ -1,15 +1,10 @@
-// pages/index.js
+// THIS ROUTE WILL ONLY BE USED ON DEV MODE TO TEST THE ADDINGS OF RECOMMENDATIONS.
+
 import { useState } from "react";
 import axios from "axios";
-import { useProfile } from "@farcaster/auth-kit";
 import Link from "next/link";
 
 export default function AddRecommendation() {
-  const profile = useProfile();
-  const {
-    isAuthenticated,
-    profile: { fid, displayName, custody },
-  } = profile;
   const [url, setUrl] = useState("");
   const [bidAmount, setBidAmount] = useState("");
   const [queue, setQueue] = useState([]);
@@ -28,19 +23,23 @@ export default function AddRecommendation() {
     setMessage("Submitting recommendation...");
     const youtubeID = youtube_parser(url);
     if (youtubeID.length != 11) return alert("invalid url!");
-    if (!fid) return alert("you need to login first");
     try {
+      console.log("in here", process.env.NEXT_PUBLIC_API_KEY_JP);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_ROUTE}/api/recommendation`,
         {
           url,
           bidAmount: bidAmount || 0,
-          authorFid: fid, // Replace with actual FID
+          authorFid: 16098,
+        },
+        {
+          headers: {
+            "x-api-key": process.env.NEXT_PUBLIC_API_KEY_JP,
+          },
         }
       );
 
       setMessage(response.data.message);
-      setQueue(response.data.queue);
       setUrl(""); // Reset URL input
       setBidAmount(""); // Reset Bid Amount input
     } catch (error) {
@@ -49,13 +48,6 @@ export default function AddRecommendation() {
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div>
-        <p>you need to login with your farcaster account to add music</p>
-      </div>
-    );
-  }
   return (
     <div className="flex flex-col items-center justify-center p-6">
       <form onSubmit={handleSubmit} className="w-full max-w-lg">
@@ -102,21 +94,6 @@ export default function AddRecommendation() {
         </div>
       </form>
       {message && <p>{message}</p>}
-      {queue.length > 0 && (
-        <div>
-          <h2>Current Queue:</h2>
-          <ul>
-            {queue.map((item) => (
-              <li key={item.id}>
-                {item.name} - Bid: {item.bidAmount}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <div>
-        <Link href="/">live</Link>
-      </div>
     </div>
   );
 }
