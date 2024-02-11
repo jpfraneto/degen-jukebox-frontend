@@ -12,7 +12,7 @@ export default function Home() {
     <main
       className={`flex h-screen px-10 pt-8 w-full flex-col items-center ${comic.className}`}
     >
-      <h1 className="text-2xl">gen radio</h1>
+      <h1 className="text-2xl mb-2">the gen radio</h1>
       <QueueCard
         recommendation={{
           authorPfp:

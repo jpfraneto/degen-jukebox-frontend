@@ -55,17 +55,21 @@ const LivePlayer = () => {
 
   return (
     <div className="player-wrapper">
-      <ReactPlayer
-        ref={playerRef}
-        url={currentVideo}
-        playing={true}
-        controls={true}
-        onStart={handleStart}
-        onEnded={handleEnded}
-        className="react-player"
-        width="100%"
-        height="100%"
-      />
+      {!currentVideo ? (
+        <div className="react-player bg-purple-700" />
+      ) : (
+        <ReactPlayer
+          ref={playerRef}
+          url={currentVideo}
+          playing={true}
+          controls={true}
+          onStart={handleStart}
+          onEnded={handleEnded}
+          className="react-player"
+          width="100%"
+          height="100%"
+        />
+      )}
     </div>
   );
 };

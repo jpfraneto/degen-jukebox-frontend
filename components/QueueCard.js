@@ -14,11 +14,11 @@ const QueueCard = ({ recommendation }) => {
       onClick={handleTipButtonClick}
       className={` ${
         recommendation.bidAmount
-          ? "my-2 w-full h-16 cursor-pointer hover:bg-purple-800 rounded-xl bg-purple-900 p-2 flex justify-between border border-red-400 "
+          ? "my-2 w-full h-16 cursor-pointer hover:bg-opacity-40 rounded-xl bg-black bg-opacity-20 p-2 flex justify-between border border-red-400 "
           : "mb-3"
       } `}
     >
-      <div className="ml-2 h-12 w-12 rounded-full overflow-hidden relative">
+      <div className="ml-2 h-12 w-12 bg-black rounded-full overflow-hidden relative">
         <Image
           src={
             recommendation.authorPfp ||

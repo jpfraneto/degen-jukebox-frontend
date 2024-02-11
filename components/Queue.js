@@ -5,7 +5,14 @@ import Link from "next/link";
 import QueueCard from "./QueueCard";
 
 const Queue = () => {
-  const [queue, setQueue] = useState([]);
+  const [queue, setQueue] = useState([
+    { bidAmount: "42", authorPfp: "" },
+    { bidAmount: "23", authorPfp: "" },
+    { bidAmount: "16", authorPfp: "" },
+    { bidAmount: "15", authorPfp: "" },
+    { bidAmount: "8", authorPfp: "" },
+    { bidAmount: "4", authorPfp: "" },
+  ]);
   const [loading, setLoading] = useState(true);
 
   async function fetchAllMusic() {
