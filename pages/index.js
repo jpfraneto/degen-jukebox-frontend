@@ -19,6 +19,7 @@ export default function Home() {
       <div className="mb-2">
         <LivePlayer setThisPfp={setThisPfp} />
       </div>
+      <p>coming next:</p>
       <Queue />
     </main>
   );
