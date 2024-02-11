@@ -5,14 +5,7 @@ import Link from "next/link";
 import QueueCard from "./QueueCard";
 
 const Queue = () => {
-  const [queue, setQueue] = useState([
-    { bidAmount: "42", authorPfp: "" },
-    { bidAmount: "23", authorPfp: "" },
-    { bidAmount: "16", authorPfp: "" },
-    { bidAmount: "15", authorPfp: "" },
-    { bidAmount: "8", authorPfp: "" },
-    { bidAmount: "4", authorPfp: "" },
-  ]);
+  const [queue, setQueue] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchAllMusic() {
@@ -35,14 +28,15 @@ const Queue = () => {
   useEffect(() => {
     fetchAllMusic();
   }, []);
-  if (loading) return <p>loading...</p>;
 
   return (
     <div className="mx-auto h-full w-full ">
       <div className="flex flex-col mb-4 w-full">
-        {queue.map((x, i) => {
-          return <QueueCard recommendation={x} key={i} index={i} />;
-        })}
+        {queue &&
+          queue.length > 0 &&
+          queue.map((x, i) => {
+            return <QueueCard recommendation={x} key={i} index={i} />;
+          })}
       </div>
     </div>
   );

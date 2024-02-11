@@ -49,14 +49,10 @@ const LivePlayer = () => {
     }
   };
 
-  if (!currentVideo) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="player-wrapper">
       {!currentVideo ? (
-        <div className="react-player bg-purple-700" />
+        <div className="react-player bg-purple-700 h-48" />
       ) : (
         <ReactPlayer
           ref={playerRef}
