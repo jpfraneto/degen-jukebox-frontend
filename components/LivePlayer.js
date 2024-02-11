@@ -3,14 +3,13 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import Link from "next/link";
 
-const LivePlayer = () => {
+const LivePlayer = ({ setThisPfp }) => {
   const [currentVideo, setCurrentVideo] = useState("");
   const [elapsedTime, setElapsedTime] = useState(0);
   const playerRef = useRef(null); // Using useRef to hold the player reference
 
   const fetchCurrentRecommendation = async () => {
     try {
-      console.log("fetching the curent recomendation");
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_ROUTE}/api/present-recommendation`,
         {
@@ -22,8 +21,8 @@ const LivePlayer = () => {
       if (response.status !== 200) {
         throw new Error("Failed to fetch the current recommendation");
       }
-      console.log("the response is: ", response.data);
       const data = response.data;
+      setThisPfp(response.data.presentRecommendation.authorPfp);
       setCurrentVideo(`https://www.youtube.com/watch?v=${data.youtubeID}`);
       setElapsedTime(data.elapsedSeconds);
     } catch (error) {

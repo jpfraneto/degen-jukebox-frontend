@@ -11,7 +11,11 @@ const QueueCard = ({ recommendation }) => {
 
   return (
     <div
-      onClick={handleTipButtonClick}
+      onClick={() => {
+        if (recommendation.bidAmount) {
+          handleTipButtonClick();
+        }
+      }}
       className={` ${
         recommendation.bidAmount
           ? "my-2 w-full h-16 cursor-pointer hover:bg-opacity-40 rounded-xl bg-black bg-opacity-20 p-2 flex justify-between border border-red-400 "
@@ -19,13 +23,7 @@ const QueueCard = ({ recommendation }) => {
       } `}
     >
       <div className="ml-2 h-12 w-12 bg-black rounded-full overflow-hidden relative">
-        <Image
-          src={
-            recommendation.authorPfp ||
-            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-          }
-          fill
-        />
+        <Image src={recommendation.authorPfp} fill />
       </div>
       {recommendation.bidAmount && (
         <div className="text-right  mx-2 flex h-full items-center">
