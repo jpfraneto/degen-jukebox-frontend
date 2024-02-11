@@ -12,7 +12,7 @@ export default function Home() {
   const [thisPfp, setThisPfp] = useState(null);
   return (
     <main
-      className={`flex h-screen px-10 pt-8 w-full flex-col items-center ${comic.className}`}
+      className={`flex overflow-y-scroll fixed top-0 h-screen px-10 pt-8 w-full flex-col items-center ${comic.className}`}
     >
       <h1 className="text-2xl mb-2">the gen radio</h1>
       <QueueCard recommendation={{ authorPfp: thisPfp || "" }} />
