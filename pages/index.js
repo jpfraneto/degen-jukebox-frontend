@@ -9,15 +9,15 @@ import { useState } from "react";
 const comic = Comic_Neue({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
 export default function Home() {
-  const [thisPfp, setThisPfp] = useState(null);
+  const [liveRecommendation, setLiveRecommendation] = useState({});
   return (
     <main
-      className={`flex overflow-y-scroll fixed top-0 h-screen px-10 pt-8 w-full flex-col items-center ${comic.className}`}
+      className={`flex overflow-y-scroll fixed top-0 h-screen px-4 pt-8 w-full flex-col items-center ${comic.className}`}
     >
       <h1 className="text-2xl mb-2">the gen radio</h1>
-      <QueueCard recommendation={{ authorPfp: thisPfp || "" }} />
-      <div className="mb-2">
-        <LivePlayer setThisPfp={setThisPfp} />
+      <QueueCard recommendation={liveRecommendation} />
+      <div className="mt-2">
+        <LivePlayer setLiveRecommendation={setLiveRecommendation} />
       </div>
       <p>coming next:</p>
       <Queue />

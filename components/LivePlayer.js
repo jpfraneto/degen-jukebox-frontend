@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import Link from "next/link";
 
-const LivePlayer = ({ setThisPfp }) => {
+const LivePlayer = ({ setLiveRecommendation }) => {
   const [currentVideo, setCurrentVideo] = useState("");
   const [elapsedTime, setElapsedTime] = useState(0);
   const playerRef = useRef(null); // Using useRef to hold the player reference
@@ -22,7 +22,7 @@ const LivePlayer = ({ setThisPfp }) => {
         throw new Error("Failed to fetch the current recommendation");
       }
       const data = response.data;
-      setThisPfp(response.data.presentRecommendation.authorPfp);
+      setLiveRecommendation(response.data.presentRecommendation);
       setCurrentVideo(`https://www.youtube.com/watch?v=${data.youtubeID}`);
       setElapsedTime(data.elapsedSeconds);
     } catch (error) {
