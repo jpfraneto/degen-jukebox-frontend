@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const QueueCard = ({ recommendation }) => {
-  console.log("the recommendation is: ", recommendation);
+const QueueCard = ({ recommendation, index, style }) => {
   const handleTipButtonClick = () => {
     const tipAmount = recommendation?.bidAmount + 1 || 1;
     const message = encodeURIComponent(`@degentip !jukebox ${tipAmount}`);
@@ -12,24 +11,24 @@ const QueueCard = ({ recommendation }) => {
 
   return (
     <div
-      onClick={handleTipButtonClick}
-      className={`my-1 w-full h-16 cursor-pointer hover:bg-opacity-40 rounded-xl bg-black bg-opacity-20 p-2 flex justify-between border border-red-400`}
+      className="absolute"
+      style={{
+        ...style,
+        animation: `float 5s ease-in-out infinite ${index * 0.5}s`,
+      }}
     >
-      <div className="ml-2 h-12 w-12 bg-black rounded-full overflow-hidden relative">
-        <Image src={recommendation.authorPfp} fill />
+      <div
+        onClick={handleTipButtonClick}
+        className="h-12 w-12 bg-black rounded-full overflow-hidden relative"
+      >
+        {recommendation.authorPfp && (
+          <Image
+            src={recommendation.authorPfp}
+            layout="fill"
+            objectFit="cover"
+          />
+        )}
       </div>
-      {recommendation?.bidAmount > 0 && (
-        <div className="text-right mx-2 flex h-full items-center">
-          <p className="text-purple-200 text-3xl">
-            {recommendation.bidAmount} $degen
-          </p>
-        </div>
-      )}
-      {recommendation.repeated && recommendation.bidAmount == 0 && (
-        <div className="text-right mx-2 flex h-full items-center">
-          <p className="text-purple-200 text-lg">repeated</p>
-        </div>
-      )}
     </div>
   );
 };
