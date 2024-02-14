@@ -71,8 +71,6 @@ export default function App({ Component, pageProps }) {
     backgroundPosition: "center",
   };
 
-  if (loading) return <p>loading...</p>;
-
   return (
     <>
       <Head>
@@ -100,7 +98,6 @@ export default function App({ Component, pageProps }) {
               <div className="w-full px-2 py-1  h-full bg-black bg-opacity-30 flex items-center">
                 <div className="w-1/5">
                   <div className="w-full relative aspect-square rounded-full overflow-hidden border-white border-2">
-                    {/* Your image here */}
                     <Image src="/images/logo.png" fill />
                   </div>
                   <div className="w-full flex justify-center mt-2">
@@ -145,6 +142,12 @@ export default function App({ Component, pageProps }) {
               </div>
             </div>
             <DegenFeed />
+            <p>
+              those are the last 100 casts that have been sent to /degen. were
+              you one of those? did you add value to the community? or were you
+              just extracting it?
+            </p>
+            <p>anyway, here&apos;s a free mint to celebrate life:</p>
           </>
         )}
       </div>

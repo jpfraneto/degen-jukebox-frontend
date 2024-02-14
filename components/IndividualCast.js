@@ -15,7 +15,6 @@ var options = {
 };
 
 const IndividualCast = ({ cast }) => {
-  console.log("this cast is: ", cast);
   return (
     <div className="active:none w-full my-1 md:mx-auto flex flex-col relative">
       <div className="w-full mx-auto h-fit flex flex-col pt-2 flex-grow bg-purple-500 text-black px-2 ">
@@ -53,6 +52,9 @@ const IndividualCast = ({ cast }) => {
         <div className="ml-2 flex pb-2 space-x-4 relative justify-between items-center">
           <div className="flex space-x-4 h-full">
             <div
+              onClick={() => {
+                alert("please do that on warpcast -for now-");
+              }}
               className={`flex space-x-1 items-center ${
                 true && "text-gray-200"
               }  cursor-pointer`}
@@ -61,6 +63,9 @@ const IndividualCast = ({ cast }) => {
               <span>{cast.replies.count}</span>
             </div>
             <div
+              onClick={() => {
+                alert("please do that on warpcast -for now-");
+              }}
               className={`flex space-x-1 items-center ${
                 true && "text-green-200"
               }  cursor-pointer`}
@@ -69,6 +74,9 @@ const IndividualCast = ({ cast }) => {
               <span>{cast.reactions.recasts.length}</span>
             </div>
             <div
+              onClick={() => {
+                alert("please do that on warpcast -for now-");
+              }}
               className={`flex space-x-1 items-center ${
                 true && "text-red-200"
               }  cursor-pointer`}
