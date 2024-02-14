@@ -79,15 +79,86 @@ export default function App({ Component, pageProps }) {
         <meta property="og:description" content="human after all" />
         <meta property="og:type" content="website" />
         <meta
+          name="description"
+          content="Transform writing into a meditation practice like no other."
+        />
+        <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_BASE_URL}/images/og.png`}
         />
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_BASE_URL} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Monoton&display=swap"
-          rel="stylesheet"
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
+        <meta name="application-name" content="the gen radio" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="the gen radio" />
+        <meta name="description" content="human after all" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="/icons/browserconfig.xml" />
+        <meta name="msapplication-TileColor" content="#21152C" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#000000" />
+
+        <link rel="apple-touch-icon" href="/images/touch/og.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/images/touch/og.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/touch/og.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="167x167"
+          href="/images/touch/og.png"
+        />
+
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/touch/og.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="images/touch/og.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content="https://thegenradio.com" />
+        <meta name="twitter:title" content="the degen radio" />
+        <meta name="twitter:description" content="Tell us who you are" />
+        <meta
+          name="twitter:image"
+          content="https://thegenradio.com/images/touch/og.png"
+        />
+        <meta name="twitter:creator" content="@kithkui" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="the gen radio" />
+        <meta property="og:description" content="human after all" />
+        <meta property="og:site_name" content="the gen radio" />
+        <meta property="og:url" content="https://www.thegenradio.com" />
+        <meta
+          property="og:image"
+          content="https://thegenradio.com/images/touch/og.png"
+        />
+        <script src="/main.js" defer></script>
       </Head>
       <div className={`${comic.className} w-96 mx-auto mainContainer h-screen`}>
         {loading ? (
