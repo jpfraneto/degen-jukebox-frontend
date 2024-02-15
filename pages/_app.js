@@ -213,12 +213,6 @@ export default function App({ Component, pageProps }) {
               </div>
             </div>
             <UserFeed />
-            <p>
-              those are the last 100 casts that have been sent to /degen. were
-              you one of those? did you add value to the community? or were you
-              just extracting it?
-            </p>
-            <p>anyway, here&apos;s a free mint to celebrate life:</p>
           </>
         )}
       </div>
