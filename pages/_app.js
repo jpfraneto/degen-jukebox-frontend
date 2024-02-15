@@ -3,7 +3,7 @@ import Head from "next/head";
 import localFont from "next/font/local";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
-import DegenFeed from "../components/DegenFeed";
+import UserFeed from "../components/UserFeed";
 import ReactPlayer from "react-player/youtube";
 import TopNavbar from "../components/TopNavbar";
 import { Comic_Neue } from "next/font/google";
@@ -212,7 +212,7 @@ export default function App({ Component, pageProps }) {
                 </div>
               </div>
             </div>
-            <DegenFeed />
+            <UserFeed />
             <p>
               those are the last 100 casts that have been sent to /degen. were
               you one of those? did you add value to the community? or were you
