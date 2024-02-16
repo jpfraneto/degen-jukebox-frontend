@@ -17,6 +17,8 @@ export default function App({ Component, pageProps }) {
   const [currentVideo, setCurrentVideo] = useState("");
   const [loaded, setLoaded] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [duration, setDuration] = useState(0); // State for total video duration in seconds
+  const [playedSeconds, setPlayedSeconds] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [liveRecommendation, setLiveRecommendation] = useState({});
   const playerRef = useRef(null); // Using useRef to hold the player reference
@@ -24,6 +26,16 @@ export default function App({ Component, pageProps }) {
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
+
+  const formatTime = (seconds) => {
+    const pad = (num) => num.toString().padStart(2, "0");
+    const totalSeconds = Math.floor(seconds); // Ensure seconds is an integer
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+    return `${pad(minutes)}:${pad(remainingSeconds)}`;
+  };
+
+  const millisToSeconds = (millis) => Math.floor(millis / 1000);
 
   const fetchCurrentRecommendation = async () => {
     try {
@@ -38,8 +50,10 @@ export default function App({ Component, pageProps }) {
       if (response.status !== 200) {
         throw new Error("Failed to fetch the current recommendation");
       }
-      const data = response.data;
-      setLiveRecommendation(response.data.presentRecommendation);
+      const data = response.data.presentRecommendation;
+      setLiveRecommendation(data);
+      setDuration(millisToSeconds(data.duration));
+      setPlayedSeconds(data.elapsedSeconds);
       setCurrentVideo(`https://www.youtube.com/watch?v=${data.youtubeID}`);
       setElapsedTime(data.elapsedSeconds);
       setLoading(false);
@@ -56,11 +70,12 @@ export default function App({ Component, pageProps }) {
     fetchCurrentRecommendation();
   };
 
+  const remainingTime = duration - playedSeconds; // Make sure these are numbers
+  const formattedRemainingTime = formatTime(remainingTime);
+
   // Ensure the player seeks to the correct elapsed time when it starts
   const handleStart = () => {
-    console.log("the handlestart is: ", playerRef);
     if (playerRef.current) {
-      console.log("the elapsed time is: ", elapsedTime);
       playerRef.current.seekTo(elapsedTime);
     }
   };
@@ -165,6 +180,16 @@ export default function App({ Component, pageProps }) {
           <p>loading...</p>
         ) : (
           <>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0 10px",
+              }}
+            >
+              <span>{formattedRemainingTime}</span>{" "}
+            </div>
             <div className="w-full flex items-center h-32" style={bgStyle}>
               <div className="w-full px-2 py-1  h-full bg-black bg-opacity-30 flex items-center">
                 <div className="w-1/5">
@@ -176,13 +201,17 @@ export default function App({ Component, pageProps }) {
                       onClick={togglePlayPause}
                       className=" playPauseButton"
                     >
-                      {isPlaying ? <FiPause size={24} /> : <FiPlay size={24} />}
+                      {isPlaying ? (
+                        <FiPause color="white" size={24} />
+                      ) : (
+                        <FiPlay color="white" size={24} />
+                      )}
                     </button>
                   </div>
                 </div>
 
-                <div className="w-3/5 flex flex-col items-start justify-start h-full py-3 px-1">
-                  <p>{liveRecommendation.name}</p>
+                <div className="w-3/5 text-xs flex flex-col items-start justify-start h-full py-3 px-1">
+                  <p className="">{liveRecommendation.name}</p>
                   <a
                     className="hover:text-yellow-400"
                     target="_blank"
@@ -198,6 +227,10 @@ export default function App({ Component, pageProps }) {
                       height={0}
                       url={currentVideo}
                       playing={isPlaying}
+                      onDuration={setDuration} // Set the duration of the video
+                      onProgress={({ playedSeconds }) =>
+                        setPlayedSeconds(playedSeconds)
+                      }
                       controls={true}
                       onStart={handleStart}
                       loaded={loaded}
@@ -205,10 +238,6 @@ export default function App({ Component, pageProps }) {
                       className="react-player"
                     />
                   </div>
-
-                  <td className="w-full bg-red-200">
-                    <progress className="h-full" max={1} value={loaded} />
-                  </td>
                 </div>
               </div>
             </div>
